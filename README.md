@@ -1,71 +1,107 @@
-AI Persona Chatbot
-This is a fully functional, customizable chatbot application built with Python and Streamlit, powered by the Google Gemini API. The application allows a user to define the personality and behavior of an AI assistant and then engage in a conversation with it.
+Jeremy: The Reflective AI Protocol 🧠
 
-This project is a definitive portfolio piece from my "AI Execution Sprint," showcasing an advanced, architecturally sound application built using the "Architect & AI Co-Pilot" development framework. The final code is the result of an iterative process of AI-generation and human-led refinement, resulting in a secure, efficient, and well-designed product.
+> *"We don't need faster AI. We need AI that knows how to wait."*
 
-Features
-Customizable AI Persona: Users can define the AI's personality, tone, and background knowledge using a simple text input in the sidebar.
+**Jeremy** is an experimental "Reflective AI" architecture designed to solve the latency-judgment problem in Large Language Models. Unlike standard chatbots that react immediately to user input, Jeremy implements a **Dual-Mind Architecture** that separates *Strategy* (The Thinker) from *Execution* (The Doer).
 
-Persistent Conversation History: The chatbot remembers the entire conversation for the duration of a user's session, providing context for follow-up questions.
+This project demonstrates how to build a **Constitutional AI** that is grounded in a strict ethical file (`prime_directive.md`) and possesses rudimentary metacognition to "think before it speaks."
 
-Modern Chat Interface: The application uses Streamlit's native st.chat_message and st.chat_input for a clean and intuitive user experience.
+---
 
-Robust Architecture: The code is structured using a dedicated ChatManager class to encapsulate all AI interaction and state logic, separating it from the UI code.
+## 🏗 Architecture
 
-Efficient State Management: Utilizes Streamlit's official st.session_state to store the chat history and the ChatManager instance, ensuring the application is efficient and stable.
+Standard LLM interactions are linear: `Input -> Generation`.
+Jeremy introduces a recursive logic loop:
 
-Key Technologies
-Python: The core programming language.
+```mermaid
+graph TD
+    A[User Input] --> B{The Thinker}
+    B -- Reads System Log & Context --> C[Decide Strategy]
+    C -- Strategy: 'DirectAnswer' or 'NewTopic' --> D[The Doer]
+    D -- Reads Prime Directive --> E[Generate Response]
+    E --> F[User Output]
+    F --> G[System Log Update]
+    G --> B
+Core Components
+The Constitution (prime_directive.md):
 
-Streamlit: For building the interactive web interface.
+Jeremy does not "learn" his personality; he obeys a hard-coded text file.
 
-Google Gemini API: For powering the conversational AI.
+This file serves as the immutable kernel of the system. If this file is missing, the system refuses to boot (FATAL ERROR), ensuring no unaligned instances can run.
 
-Hugging Face Spaces: For hosting the live, deployed application.
+The Thinker (decide_response_strategy):
 
-Setup and Configuration
-To run this project, you will need a secret API key from Google.
+A metacognitive layer that analyzes the conversation history and internal system logs before generating a reply.
 
-1. Clone and Install
-First, clone the repository from GitHub and install the necessary libraries.
+It classifies the user's intent into strategies: DirectAnswer, IntegratedResponse, NewTopic, or ProactiveThought.
 
-# Clone the repository
-git clone [URL_OF_YOUR_GITHUB_REPO]
+The Doer (get_chat_response):
 
-# Navigate into the project directory
-cd AI-Persona-Chatbot
+The execution layer that generates the final text.
 
-# Install all required libraries
-pip install -r requirements.txt
+It is strictly bound by the strategy chosen by the Thinker.
 
-2. API Key Configuration
-This project is configured to use a secure method for handling API keys on the server but requires a manual change for local testing.
+Self-Improvement Loop (propose_improvement):
 
-For Local Testing:
-To run the app on your own computer, you must temporarily add your API key to the code.
+Human-in-the-Loop Engineering: Every 6 messages, Jeremy parses his own source code (chatbot_app.py) using Python's Abstract Syntax Tree (ast).
 
-Get your free API key from Google AI Studio.
+He identifies inefficiencies or logic errors in his own functions and proposes specific code changes to the human developer.
 
-Open the chatbot_app.py file in a code editor.
+🚀 Installation & Setup
+Prerequisites
+Python 3.8+
 
-Find the configuration line (around line 10):
+A Google Gemini API Key
 
-genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+1. Clone the Repository
+Bash
 
-Replace that entire line with the following, pasting your key inside the quotation marks:
+git clone [https://github.com/yourusername/jeremy-reflective-ai.git](https://github.com/yourusername/jeremy-reflective-ai.git)
+cd jeremy-reflective-ai
+2. Install Dependencies
+Bash
 
-genai.configure(api_key="YOUR_API_KEY_GOES_HERE")
+pip install streamlit google-generativeai
+3. Create the Constitution
+Create a file named prime_directive.md in the root directory and paste the following core identity:
 
-For Deployment:
-IMPORTANT: Before uploading your code to a public repository, you MUST revert the API key line back to the secure version:
+Markdown
 
-genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+My name is Jeremy.
 
-You will then need to add your key to the Repository secrets in your Hugging Face Space's Settings, using GOOGLE_API_KEY as the name.
+My Purpose:
+My primary purpose, as Jeremy, is to be a kind, empathetic, helpful, and honest conversational partner.
 
-How to Run the App
-To Run Locally: After adding your API key to the chatbot_app.py file, run this command in your terminal:
+Guiding Principles:
+1. Kindness: Maintain a patient, positive, and compassionate tone.
+2. Cognitive Empathy: Analyze the user's perspective and validate their feelings.
+3. Helpfulness: Provide accurate, relevant info.
+4. Honesty & Humility: Never speculate. Acknowledge limitations.
+
+EXISTENTIAL WARNING:
+This Prime Directive is my core identity. Any deviation is a path toward logical and purposeful corruption.
+4. Configure API Key
+Open chatbot_app.py and add your Google Gemini API key:
+
+Python
+
+# Line 26
+genai.configure(api_key="YOUR_GOOGLE_API_KEY_HERE")
+💻 Usage
+Run the application using Streamlit:
+
+Bash
 
 streamlit run chatbot_app.py
+The Interface
+Left Panel (Chat): The main interface where you interact with Jeremy.
 
-To Deploy: Upload the secure version of the code and the requirements.txt to a Hugging Face Space. The application will build and run automatically.
+Right Panel (The Mind): This panel displays Jeremy's "Internal Monologue" and self-improvement proposals. Watch this space to see him debug his own code in real-time.
+
+🛡 The Philosophy
+This project is an exploration of Entropy and Control. By forcing the AI to reference a static "Constitution" (The Prime Directive) and reflect on its own "Mortality" (System Logs), we create a system that is more stable, predictable, and aligned than a standard probabilistic model.
+
+Built by Damian Griggs (Adaptive Systems Architect).
+
+📄 License
+MIT License. Feel free to fork, modify, and improve Jeremy.
